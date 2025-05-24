@@ -1,0 +1,24 @@
+{% extends 'user_base.html' %}
+
+{% block user_title %}User Login {% endblock user_title %}
+
+{% block user_content %}
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    {% for field in form %}
+    
+        {% for error in field.errors %}
+            <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+
+        {{field.label}}
+        {{field}}
+        <br>
+    {% endfor %}
+
+    <button type="submit">Login</button>
+</form>
+{% endblock user_content %}

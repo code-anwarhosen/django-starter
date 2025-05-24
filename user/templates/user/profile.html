@@ -1,0 +1,7 @@
+{% extends 'user_base.html' %}
+
+<title>{% block user_title %}Profile{% endblock user_title %}</title>
+
+{% block user_content %}
+    <h1>Profile name : {{request.user.username}}</h1>
+{% endblock user_content %}
