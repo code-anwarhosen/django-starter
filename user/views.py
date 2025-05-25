@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from user.forms import UserRegistrationForm, UserLoginForm
+from user.forms import UserRegistrationForm, UserLoginForm, UserUpdateForm
 
 
 @login_required
@@ -43,3 +43,17 @@ def user_register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'user/register.html', {'form': form})
+
+@login_required
+def user_update(request):
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST, request.FILES, instance=request.user)
+        
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated account!')
+            return redirect('profile')
+        messages.error(request, 'Something wrong!')
+
+    form = UserUpdateForm(instance=request.user)
+    return render(request, 'user/update_profile.html', {'form': form})

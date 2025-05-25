@@ -5,6 +5,7 @@ from user import views
 
 urlpatterns = [
     path('profile/', views.user_profile, name='profile'),
+    path('profile/update/', views.user_update, name='update_profile'),
 
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
