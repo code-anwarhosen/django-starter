@@ -8,8 +8,11 @@
 <body>
 
     {% if request.user.is_authenticated %}
+        <button><a href="/admin">admin</a></button>
         <button><a href="{% url 'profile' %}">profile</a></button>
         <button><a href="{% url 'logout' %}">logout</a></button>
+
+        <button><a href="{% url 'password_reset' %}">password_reset</a></button>
     {% else %}
         <button><a href="{% url 'login' %}">login</a></button>
         <button><a href="{% url 'register' %}">register</a></button>
