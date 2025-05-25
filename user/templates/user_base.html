@@ -1,33 +1,19 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block user_title %}Title{% endblock user_title %}</title>
+    
+    <title>{% block user_title %}{% endblock user_title %}</title>
+    
+    <link rel="stylesheet" href="{% static 'user/css/auth_user_styles.css' %}">
+
 </head>
 <body>
 
-    {% if request.user.is_authenticated %}
-        <button><a href="/admin">admin</a></button>
-        <button><a href="{% url 'profile' %}">profile</a></button>
-        <button><a href="{% url 'logout' %}">logout</a></button>
-
-        <button><a href="{% url 'password_reset' %}">password_reset</a></button>
-    {% else %}
-        <button><a href="{% url 'login' %}">login</a></button>
-        <button><a href="{% url 'register' %}">register</a></button>
-    {% endif %}
-
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li class="{{ message.tags }}">
-                {{ message }}
-            </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
     {% block user_content %}{% endblock user_content %}
+
 </body>
 </html>
