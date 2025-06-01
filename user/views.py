@@ -5,19 +5,6 @@ from django.contrib.auth.decorators import login_required
 from user.forms import UserRegistrationForm, UserLoginForm, UserUpdateForm
 
 
-@login_required
-def user_profile(request):
-    return render(request, 'user/profile.html')
-
-
-@login_required
-def user_logout(request):
-    if request.user.is_authenticated:
-        logout(request)
-        messages.success(request, 'Logout Successful!')
-    return redirect('login')
-
-
 def user_login(request):
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
@@ -43,6 +30,19 @@ def user_register(request):
     else:
         form = UserRegistrationForm()
     return render(request, 'user/register.html', {'form': form})
+
+
+def user_logout(request):
+    if request.user.is_authenticated:
+        logout(request)
+        messages.success(request, 'Logout Successful!')
+    return redirect('login')
+
+
+@login_required
+def user_profile(request):
+    return render(request, 'user/profile.html')
+
 
 @login_required
 def user_update(request):
