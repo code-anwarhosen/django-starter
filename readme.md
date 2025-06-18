@@ -16,7 +16,7 @@ Move to the project dir
 cd django-starter
 ```
 
-Create a virtualenv and activate. (make sure you have python and python venv module)
+Create a virtualenv and activate. (make sure to have `python virtualenv module` installed)
 
 ```
 python -m venv venv
